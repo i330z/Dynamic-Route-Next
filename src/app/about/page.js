@@ -1,12 +1,31 @@
-import React from 'react'
 
-const About = () => {
+export async function generateMetadata({ params, searchParams }, parent) {
+  // read route params
+  const id = params.id
+  console.log(id)
+
+  const {cover} = searchParams
+  console.log(cover)
+
+  // optionally access and extend (rather than replace) parent metadata
+  const previousImages = cover
+ 
+  return {
+    title: 'About Page',
+    openGraph: {
+      images: previousImages,
+    },
+  }
+}
+ 
+export default function About({ params, searchParams }) {
+  const {cover} = searchParams
   return (
-    <div className='container'>
-    <div>About</div>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat distinctio, cum a in sunt autem consequatur, minima aliquam possimus veniam nam ullam eveniet alias. Voluptate facilis maiores debitis, ipsum obcaecati aliquid illo possimus eius eligendi omnis, aliquam veniam accusamus illum officiis nulla laborum nemo quidem hic molestias rerum sint harum?</p>
-    </div>
+      <div>
+        <img src={cover} alt="" srcset="" />
+
+
+        <button style={{background: 'lightgreen', color:'white', padding:'20px 60px'}}>Share</button>
+      </div>
   )
 }
-
-export default About
